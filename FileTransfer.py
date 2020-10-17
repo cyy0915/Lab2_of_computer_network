@@ -4,7 +4,7 @@ import json
 import struct
 
 def sendFile(c, file, filename):
-    filesize_bytes = sys.getsizeof(file)
+    filesize_bytes = len(file)
     dirc = {
         'filename': filename,
         'filesize_bytes': filesize_bytes,
@@ -28,7 +28,6 @@ def recvFile(c):
     f = open(filename, 'wb')
     while recv_len < filesize_b:
         if filesize_b - recv_len > 1024:
-
             recv_mesg = c.recv(1024)
             f.write(recv_mesg)
             recv_len += len(recv_mesg)
